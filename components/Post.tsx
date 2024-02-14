@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import DeleteButton from "./DeleteButton";
 
 interface PostProps {
   id: string;
@@ -81,8 +82,9 @@ export default function Post({
         </div>
       )}
       {isEditable &&(
-        <div>
+        <div className="flex gap-3 font-bold py-2 px-4 w-fit rounded-md bg-slate-200">
             <Link href={`/edit-post/${id}`}>Edit</Link>
+            <DeleteButton/>
         </div>
       )}
     </div>

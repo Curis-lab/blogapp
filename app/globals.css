@@ -17,6 +17,7 @@ h2 {
 p.content {
   @apply leading-loose;
 }
+
 .link{
   @apply text-[#7563DF] font-bold max-w-full overflow-hidden text-ellipsis;
 }
