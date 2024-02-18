@@ -2,10 +2,13 @@
 
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const {status} = useSession();
-
+  const router = useRouter();
+    
   return (
     <div className="flex justify-between pb-4 border-b mb-4">
       <div className="">
@@ -19,8 +22,13 @@ const Navbar = () => {
           <br /> One Byte at a Time.
         </p>
       </div>
-      {status === 'authenticated'? <div>Authen</div>:<div>UnAunti</div>}
       <div className="flex items-center">
+        <div className="flex gap-2 m-2 cursor-pointer" onClick={()=>router.push("/create-post")}>
+          <span>
+            <Image src='./add.svg' alt="add" width={25} height={25}/>
+          </span>
+          create Page
+        </div>
         <Link className="btn" href={"/sign-in"}>
           Sign In
         </Link>
