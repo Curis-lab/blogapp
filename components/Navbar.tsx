@@ -18,7 +18,7 @@ const Navbar = () => {
           </h1>
         </Link>
         <p className="text-sm">
-          Exploring tomorrow's Invotions,
+          Exploring tomorrow&apos;s Invotions&#39;
           <br /> One Byte at a Time.
         </p>
       </div>
