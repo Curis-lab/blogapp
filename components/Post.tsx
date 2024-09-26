@@ -25,8 +25,8 @@ export default function Post({
   links,
   category,
 }: PostProps) {
-    const isEditable = true;
-    return (
+  const isEditable = true;
+  return (
     <div className="my-5 border-b border-blue-300 py-8">
       <div className="my-4">
         Posted by:<span className="font-bold">{author}</span> on {date}
@@ -76,15 +76,17 @@ export default function Post({
                   d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
                 />
               </svg>
-              <Link href={link} className="link">{link}</Link>
+              <Link href={link} className="link">
+                {link}
+              </Link>
             </div>
           ))}
         </div>
       )}
-      {isEditable &&(
+      {isEditable && (
         <div className="flex gap-3 font-bold py-2 px-4 w-fit rounded-md bg-slate-200">
-            <Link href={`/edit-post/${id}`}>Edit</Link>
-            <DeleteButton/>
+          <Link href={`/edit-post/${id}`}>Edit</Link>
+          <DeleteButton />
         </div>
       )}
     </div>
