@@ -1,5 +1,13 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+
+## Blog App
+
+![My Image](asserts/md.png)
+
+This is a React-based blog application that allows users to read and create blog posts. The app is designed with a clean and responsive UI, making it easy for users to browse through articles and interact with content.
+
+
 ## Getting Started
 
 First, run the development server:
