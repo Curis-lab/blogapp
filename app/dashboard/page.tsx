@@ -1,14 +1,20 @@
 import CategoriesList from "@/components/CategoriesList";
 import Post from "@/components/Post";
 import { postsData } from "@/data";
+import { getPosts } from "@/libs/post";
 import Link from "next/link";
 
-export default function Dashboard() {
+
+
+
+
+export default async function Dashboard() {
+  const {posts} = await getPosts();
   return (
     <>
       <CategoriesList />
-      {postsData && postsData.length > 0 ? (
-        postsData.map((post) => <Post 
+      {posts && posts.length > 0 ? (
+        posts.map((post) => <Post 
         key={post.id}
         id={post.id}
         author = {post.author}

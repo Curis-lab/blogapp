@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { NextAuthProvider } from "@/components/Providers";
+import ThemeProvider from "@/frontend/theme/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,11 +22,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <NextAuthProvider>
-        <div className="lg:max-w-[900px] lg:px-16 mx-auto py-8 shadow-xl flex flex-col px-8">
-          <Navbar />
-          <div className="flex-auto">{children}</div>
-          <Footer />
-        </div>
+          <ThemeProvider>
+            <div className="lg:max-w-[900px] lg:px-16 mx-auto py-8 shadow-xl flex flex-col px-8">
+              <Navbar />
+              <div className="flex-auto">{children}</div>
+              <Footer />
+            </div>
+          </ThemeProvider>
         </NextAuthProvider>
       </body>
     </html>

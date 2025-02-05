@@ -1,10 +1,23 @@
-"use client";
+'use client';
 
 import { categoriesData } from "@/data";
 import Link from "next/link";
-import { useState } from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function CreatePostForm() {
+  const router = useRouter();
+
+  const [formData, setFormData] = useState({
+    title:"",
+    content:"",
+    author:"tuntun",
+    datepublished:"1211",
+    category:"",
+    links:[""],
+    thumbnail:""
+  })
+  
   const [links, setLinks] = useState<string[]>([]);
   const [inputLinks, setInputLinks] = useState("");
   const addLink = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -18,13 +31,40 @@ export default function CreatePostForm() {
   const deleteLink = (index: number) => {
     setLinks((prev) => prev.filter((_, i) => i !== index));
   };
-  
+  const handleSubmit = async(e)=>{
+    e.preventDefault();
+
+    try{
+      const res = await fetch('http://localhost:3000/api/post',{
+        method:'POST',
+        headers:{
+          "Content-Type":"application/json",
+        },
+        body: JSON.stringify(formData)
+      })
+      if(res.ok){
+        router.push('/');
+      }else{
+        throw new Error('Failed to create post');
+
+      }
+
+      
+    }catch(error){
+      throw new Error('Failed to create post');
+    }
+
+    console.log('this is submit the form', formData);
+  }
+  const handleChange = (e, field:string)=>{
+    setFormData({...formData, [field]: e.target.value});
+  }
   return (
     <div>
       <h2>Create Post</h2>
-      <form className="flex flex-col gap-2">
-        <input type="text" />
-        <textarea placeholder="Content" />
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+        <input type="text" value={formData.title} onChange={e=>handleChange(e, 'title')}/>
+        <textarea placeholder="Content" value={formData.content} onChange={e=>handleChange(e, 'content')} />
         {links &&
           links.map((link, i) => (
             <div key={i} className="flex gap-2 items-center">
@@ -93,12 +133,12 @@ export default function CreatePostForm() {
             Add
           </button>
         </div>
-        <select className="p-3 rounded-md border appearance-none">
-          <option value="">Select a categories</option>
+        <select onChange={e=>handleChange(e, 'category')} value={formData.category} className="p-3 rounded-md border appearance-none">
+          <option value="">Select a category</option>
           {categoriesData &&
-            categoriesData.map((cateory) => (
-              <option key={cateory.id} value={cateory.name}>
-                {cateory.name}
+            categoriesData.map((category) => (
+              <option key={category.id} value={category.name}>
+                {category.name}
               </option>
             ))}
         </select>

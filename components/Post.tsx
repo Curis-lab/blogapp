@@ -34,7 +34,7 @@ export default function Post({
       <div className="relative w-full h-72">
         {thumbnail ? (
           <Image
-            src={thumbnail}
+            src="https://letsenhance.io/static/73136da51c245e80edc6ccfe44888a99/1015f/MainBefore.jpg"
             alt="image"
             fill
             className="object-cover object-center rounded-md"
