@@ -5,6 +5,7 @@ import { postsData } from "@/data";
 export default function Home() {
   return (
     <>
+    <div>Home</div>
       <CategoriesList />
       {postsData && postsData.length > 0 ? (
         postsData.map((post) => <Post 
